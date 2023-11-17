@@ -9,16 +9,11 @@ import Foundation
 
 class HomeViewModel: BaseViewModel {
 
-    private var client: NetworkClient
+    @Injected var client: NetworkClient
 
     /// Inputs
     @Published private(set) var items: [AvailableBreed] = []
     @Published private(set) var errorMessage: String?
-
-    required init(_ client: NetworkClient = NetworkClient()) {
-        self.client = client
-        super.init()
-    }
 
     override func startFetchingData() {
         Task(priority: .userInitiated) {

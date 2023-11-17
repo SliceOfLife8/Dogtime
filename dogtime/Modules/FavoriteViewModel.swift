@@ -9,7 +9,7 @@ import Foundation
 
 class FavoriteViewModel: BaseViewModel { 
 
-    private(set) var coreDataManager: CoreDataManager
+    @Injected var coreDataManager: CoreDataManager
 
     /// Inputs
     @Published private(set) var items: [BreedImage] = []
@@ -17,15 +17,7 @@ class FavoriteViewModel: BaseViewModel {
     @Published private(set) var errorMessage: String?
 
     /// Outputs
-    @Published var selectedCategory: String
-
-    required init(
-        coreDataManager: CoreDataManager = CoreDataManager()
-    ) {
-        self.coreDataManager = coreDataManager
-        self.selectedCategory = "All"
-        super.init()
-    }
+    @Published var selectedCategory: String = "All"
 
     override func startFetchingData() {
         let breedImages = coreDataManager.fetchAllRecords()

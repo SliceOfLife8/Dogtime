@@ -9,25 +9,20 @@ import Foundation
 
 class DetailsViewModel: BaseViewModel {
 
-    private var client: NetworkClient
-    private var coreDataManager: CoreDataManager
-    private var favoriteIdentifiers: [String]
+    @Injected var client: NetworkClient
+    @Injected var coreDataManager: CoreDataManager
+
+    private var favoriteIdentifiers: [String] = []
 
     /// Inputs
     @Published private(set) var category: String
     @Published private(set) var items: [BreedImage] = []
     @Published private(set) var errorMessage: String?
 
-    required init(
-        _ client: NetworkClient = NetworkClient(),
-        coreDataManager: CoreDataManager = CoreDataManager(),
-        breedCategory: String
-    ) {
-        self.client = client
-        self.coreDataManager = coreDataManager
-        self.favoriteIdentifiers = coreDataManager.fetchAllRecords().compactMap { $0.id }
+    required init(breedCategory: String) {
         self.category = breedCategory
         super.init()
+        self.favoriteIdentifiers = coreDataManager.fetchAllRecords().compactMap { $0.id }
     }
 
     override func startFetchingData() {
