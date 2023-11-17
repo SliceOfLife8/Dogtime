@@ -41,6 +41,7 @@
 		CEA09E0B2ADAA9FD0056C9F6 /* BreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA09E0A2ADAA9FD0056C9F6 /* BreedImage.swift */; };
 		CEA09E0D2ADAABBD0056C9F6 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA09E0C2ADAABBD0056C9F6 /* FavoriteViewController.swift */; };
 		CEA09E0F2ADAABC40056C9F6 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA09E0E2ADAABC40056C9F6 /* FavoriteViewModel.swift */; };
+		CEB49C832B0754B40070C31B /* Url+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C822B0754B40070C31B /* Url+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		CEA09E0A2ADAA9FD0056C9F6 /* BreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImage.swift; sourceTree = "<group>"; };
 		CEA09E0C2ADAABBD0056C9F6 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		CEA09E0E2ADAABC40056C9F6 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		CEB49C822B0754B40070C31B /* Url+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4CFB872ADD0C9D0060ABBF /* Array+Extension.swift */,
+				CEB49C822B0754B40070C31B /* Url+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				CE78CC8E2ADB28C500F2859C /* CoreDataStack.swift in Sources */,
 				CEA09E002ADA87770056C9F6 /* HomeViewModel.swift in Sources */,
 				CEA09E092ADA99A80056C9F6 /* DetailsViewModel.swift in Sources */,
+				CEB49C832B0754B40070C31B /* Url+Extension.swift in Sources */,
 				CEA09E072ADA999F0056C9F6 /* DetailsViewController.swift in Sources */,
 				CE78CC962ADB2DED00F2859C /* FavoriteEntity+Extension.swift in Sources */,
 				CE4CFB882ADD0C9D0060ABBF /* Array+Extension.swift in Sources */,

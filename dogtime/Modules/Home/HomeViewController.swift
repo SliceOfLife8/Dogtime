@@ -86,7 +86,7 @@ extension HomeViewController {
     private func applySnapshot(_ breeds: [AvailableBreed]) {
         var sectionSnapshot = NSDiffableDataSourceSectionSnapshot<AvailableBreed>()
         sectionSnapshot.append(breeds)
-        dataSource?.apply(sectionSnapshot, to: 0, animatingDifferences: false)
+        dataSource?.apply(sectionSnapshot, to: 0)
     }
 }
 

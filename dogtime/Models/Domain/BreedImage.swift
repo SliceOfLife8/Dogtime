@@ -20,4 +20,8 @@ struct BreedImage: Hashable {
         self.breed = breed
         self.identifier = url.lastPathComponent
     }
+
+    static func == (lhs: BreedImage, rhs: BreedImage) -> Bool {
+        lhs.identifier == rhs.identifier && lhs.breed == rhs.breed && lhs.isFavorite == rhs.isFavorite
+    }
 }

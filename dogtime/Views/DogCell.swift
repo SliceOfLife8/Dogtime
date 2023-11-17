@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Constrain the protocol to only allow classes to conform by using AnyObject.
 protocol DogCellDelegate: AnyObject {
     func favoriteStatusChanged(_ view: DogCell)
 }
@@ -19,7 +20,7 @@ class DogCell: UICollectionViewCell {
 
     weak var delegate: DogCellDelegate?
 
-    private var task: URLSessionTask?
+    private var urlTask: Task<(), Never>?
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -71,14 +72,16 @@ class DogCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        task?.cancel()
+        urlTask?.cancel()
         imageView.image = nil
     }
 
     func configureLayout(_ dataModel: DataModel) {
         favoriteButton.isHidden = true
         favoriteButton.tintColor = dataModel.isFavorite ? .red : .white
-        loadImageUsingCache(dataModel.imageUrl)
+        urlTask = Task {
+           await loadImage(dataModel.imageUrl)
+        }
 
         guard dataModel.showBreedIndicator else { return }
         imageView.addSubview(breedLabel)
@@ -123,25 +126,10 @@ class DogCell: UICollectionViewCell {
         })
     }
 
-    private func loadImageUsingCache(_ url: URL) {
-        if let cachedImage = ImageCacheManager.shared.retrieve(forKey: url) {
-            imageView.image = cachedImage
-            favoriteButton.isHidden = false
-            return
-        }
-
-        task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
-            guard let data, error == nil else { return }
-
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data) {
-                    ImageCacheManager.shared.store(image: image, withUrl: url)
-                    self.imageView.image = image
-                    self.favoriteButton.isHidden = false
-                }
-            }
-        })
-        task?.resume()
+    private func loadImage(_ url: URL) async {
+        guard let image = await url.loadImageUsingCache() else { return }
+        imageView.image = image
+        favoriteButton.isHidden = false
     }
 
     @objc private func favoriteToggleTapped() {

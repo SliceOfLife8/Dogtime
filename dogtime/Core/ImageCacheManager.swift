@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ImageCacheManager {
+@globalActor
+actor ImageCacheManager {
 
     static let shared = ImageCacheManager()
 

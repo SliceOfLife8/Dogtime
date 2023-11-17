@@ -37,8 +37,11 @@ class DetailsViewController: BaseViewController<DetailsViewModel> {
         viewModel?.$items
             .dropFirst()
             .sink { [weak self] items in
-                self?.configureDataSource(items)
-                self?.applySnapshot(items)
+                guard let self else { return }
+                if dataSource == nil {
+                    self.configureDataSource(items)
+                }
+                self.applySnapshot(items)
             }
             .store(in: &cancellables)
 
@@ -111,7 +114,7 @@ extension DetailsViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, BreedImage>()
         snapshot.appendSections([0])
         snapshot.appendItems(images, toSection: 0)
-        dataSource?.applySnapshotUsingReloadData(snapshot)
+        dataSource?.apply(snapshot)
     }
 }
 

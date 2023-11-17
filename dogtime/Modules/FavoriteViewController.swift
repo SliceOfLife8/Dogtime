@@ -82,7 +82,7 @@ class FavoriteViewController: BaseViewController<FavoriteViewModel> {
                 if !snapshot.itemIdentifiers.contains(filteredItems.extractedElements) {
                     snapshot.appendItems(filteredItems.extractedElements)
                 }
-                self.dataSource?.apply(snapshot, animatingDifferences: true)
+                self.dataSource?.apply(snapshot)
                 self.viewModel?.selectedCategory = action.title
             }
         }
